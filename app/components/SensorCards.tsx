@@ -1,3 +1,4 @@
+
 const sensors = [
   {
     name: "SUHU",
@@ -20,11 +21,18 @@ const sensors = [
     icon: "📏",
     description: "Jarak objek",
   },
+  {
+    name: "KELEMBAPAN",
+    value: "62",
+    unit: "%",
+    icon: "💧",
+    description: "Kelembapan udara",
+  },
 ];
 
 export default function SensorCards() {
   return (
-    <section className="grid gap-5 md:grid-cols-3">
+    <section className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {sensors.map((sensor) => (
         <div
           key={sensor.name}
@@ -35,23 +43,17 @@ export default function SensorCards() {
               <p className="text-sm font-medium tracking-widest text-gray-400">
                 {sensor.name}
               </p>
-
               <div className="mt-4 flex items-end gap-2">
                 <span className="text-4xl font-bold text-white">
                   {sensor.value}
                 </span>
-
                 <span className="mb-1 text-lg text-gray-400">
                   {sensor.unit}
                 </span>
               </div>
             </div>
-
-            <div className="text-3xl">
-              {sensor.icon}
-            </div>
+            <div className="text-3xl">{sensor.icon}</div>
           </div>
-
           <p className="mt-4 text-sm text-gray-500">
             {sensor.description}
           </p>

@@ -1,9 +1,11 @@
+
 import { Suspense } from "react";
 
 import Header from "./components/Header";
 import SensorCards from "./components/SensorCards";
 import SensorData from "./components/SensorData";
 import Loading from "./components/Loading";
+import DeviceStatus from "./components/DeviceStatus";
 
 export default function Home() {
   return (
@@ -42,7 +44,7 @@ export default function Home() {
           <SensorCards />
         </section>
 
-        {/* DYNAMIC DATA */}
+        {/* FIRST DYNAMIC BOUNDARY */}
         <section className="mt-8">
           <Suspense fallback={<Loading />}>
             <SensorData />
@@ -58,12 +60,10 @@ export default function Home() {
           <div className="mt-5 space-y-4">
             <div className="flex items-center gap-3">
               <span className="h-2 w-2 rounded-full bg-green-400" />
-
               <div>
                 <p className="text-sm text-gray-300">
                   Sensor berhasil terhubung
                 </p>
-
                 <p className="text-xs text-gray-600">
                   Baru saja
                 </p>
@@ -72,12 +72,10 @@ export default function Home() {
 
             <div className="flex items-center gap-3">
               <span className="h-2 w-2 rounded-full bg-cyan-400" />
-
               <div>
                 <p className="text-sm text-gray-300">
                   Data sensor diperbarui
                 </p>
-
                 <p className="text-xs text-gray-600">
                   Beberapa saat yang lalu
                 </p>
@@ -86,18 +84,31 @@ export default function Home() {
 
             <div className="flex items-center gap-3">
               <span className="h-2 w-2 rounded-full bg-purple-400" />
-
               <div>
                 <p className="text-sm text-gray-300">
                   Sistem monitoring aktif
                 </p>
-
                 <p className="text-xs text-gray-600">
                   Hari ini
                 </p>
               </div>
             </div>
           </div>
+        </section>
+
+        {/* SECOND DYNAMIC BOUNDARY - CHALLENGE 3 */}
+        <section className="mt-8">
+          <Suspense
+            fallback={
+              <div className="rounded-2xl border border-purple-500/20 bg-white/5 p-8 text-center">
+                <div className="animate-pulse text-gray-400">
+                  Memeriksa status perangkat...
+                </div>
+              </div>
+            }
+          >
+            <DeviceStatus />
+          </Suspense>
         </section>
       </div>
 
